@@ -25,7 +25,24 @@ RUN yum upgrade -y
 RUN yum install -y java-1.7.0-openjdk
 
 # CDH
-RUN yum -y install bigtop-utils bigtop-jsvc bigtop-tomcat hadoop hadoop-hdfs hadoop-httpfs hadoop-mapreduce hadoop-yarn hadoop-client hadoop-0.20-mapreduce hue-plugins hbase hive oozie oozie-client pig zookeeper hue
+RUN yum -y install bigtop-utils
+RUN yum -y install bigtop-jsvc
+RUN yum -y install bigtop-tomcat
+RUN yum -y install hadoop
+RUN yum -y install hadoop-hdfs
+RUN yum -y install hadoop-httpfs
+RUN yum -y install hadoop-mapreduce
+RUN yum -y install hadoop-yarn
+RUN yum -y install hadoop-client
+RUN yum -y install hadoop-0.20-mapreduce
+RUN yum -y install hue-plugins
+RUN yum -y install hbase
+RUN yum -y install hive
+RUN yum -y install oozie
+RUN yum -y install oozie-client
+RUN yum -y install pig
+RUN yum -y install zookeeper
+RUN yum -y install hue
 
 # Cloudera Manager
 RUN yum -y install cloudera-manager-daemons cloudera-manager-server cloudera-manager-agent
