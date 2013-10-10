@@ -14,9 +14,9 @@ RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 
 # Yum repos
-RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/cm4/redhat/6/x86_64/cm/cloudera-manager.repo
-RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/cloudera-cdh4.repo
-RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/impala/redhat/6/x86_64/impala/cloudera-impala.repo
+ADD http://archive.cloudera.com/cm4/redhat/6/x86_64/cm/cloudera-manager.repo /etc/yum.repos.d/
+ADD http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/cloudera-cdh4.repo /etc/yum.repos.d/
+ADD http://archive.cloudera.com/impala/redhat/6/x86_64/impala/cloudera-impala.repo /etc/yum.repos.d/
 
 # Upgrade
 RUN yum upgrade -y
@@ -50,6 +50,12 @@ RUN yum -y install cloudera-manager-daemons cloudera-manager-server cloudera-man
 # Cloudera embedded PostgreSQL DB
 RUN yum install -y cloudera-manager-server-db
 
+EXPOSE 7180 7180
+EXPOSE 8888 8888
+
 # RUN service cloudera-scm-server start
 
 # RUN service cloudera-scm-agent start
+
+ENTRYPOINT /usr/sbin/sshd -D && service cloudera-scm-server start && service cloudera-scm-agent start
+
