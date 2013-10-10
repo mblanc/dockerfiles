@@ -1,11 +1,24 @@
 FROM centos
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
-# Add the CDH4 repository
-ADD cloudera-cdh4.repo /etc/yum.repos.d/
-ADD cloudera-manager.repo /etc/yum.repos.d/
+# Upgrade
+RUN yum upgrade -y
 
-# Upgrade the images packages
+# RUN yum install -y passwd
+RUN yum install -y openssh-server openssh-clients
+RUN chkconfig sshd on
+RUN service sshd start
+
+RUN ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
+RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+
+
+# Yum repos
+RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/cm4/redhat/6/x86_64/cm/cloudera-manager.repo
+RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/cloudera-cdh4.repo
+RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/impala/redhat/6/x86_64/impala/cloudera-impala.repo
+
+# Upgrade
 RUN yum upgrade -y
 
 # Install Java
