@@ -1,22 +1,10 @@
-FROM centos
+FROM mblanc/sshd
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
-# Upgrade
-RUN yum upgrade -y
-
-# RUN yum install -y passwd
-RUN yum install -y openssh-server openssh-clients
-RUN chkconfig sshd on
-RUN service sshd start
-
-RUN ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
-RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
-
-
 # Yum repos
-ADD http://archive.cloudera.com/cm4/redhat/6/x86_64/cm/cloudera-manager.repo /etc/yum.repos.d/
-ADD http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/cloudera-cdh4.repo /etc/yum.repos.d/
-ADD http://archive.cloudera.com/impala/redhat/6/x86_64/impala/cloudera-impala.repo /etc/yum.repos.d/
+RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/cm4/redhat/6/x86_64/cm/cloudera-manager.repo
+RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/cloudera-cdh4.repo
+RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/impala/redhat/6/x86_64/impala/cloudera-impala.repo
 
 # Upgrade
 RUN yum upgrade -y
@@ -59,3 +47,5 @@ EXPOSE 8888:8888
 
 # ENTRYPOINT /usr/sbin/sshd -D && service cloudera-scm-server start && service cloudera-scm-agent start
 
+ENTRYPOINT ["/usr/sbin/sshd"]
+CMD ["-D"]
