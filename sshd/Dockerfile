@@ -1,9 +1,9 @@
 FROM centos
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
-RUN yum -y groupinstall "Development tools"
+RUN yum upgrade -y
 
-RUN yum install openssh-server openssh-clients
+RUN yum install -y openssh-server openssh-clients
 RUN sed 's/UsePAM yes/UsePAM no/' -i /etc/ssh/sshd_config
 RUN sed 's/#PermitRootLogin yes/PermitRootLogin yes/' -i /etc/ssh/sshd_config
 RUN sed 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/' -i /etc/ssh/sshd_config
