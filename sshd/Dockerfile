@@ -11,6 +11,6 @@ RUN service sshd start
 
 RUN ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
 
-ADD http://archive.cloudera.com/cm4/redhat/6/x86_64/cm/cloudera-manager.repo /etc/yum.repos.d/
+RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/cm4/redhat/6/x86_64/cm/cloudera-manager.repo
 
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
