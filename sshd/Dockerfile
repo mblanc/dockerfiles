@@ -15,5 +15,5 @@ RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 RUN echo "root:centos"|chpasswd
 
-#ENTRYPOINT ["/usr/sbin/sshd"]
-#CMD ["-D"] 
+CMD ["-D"] 
+ENTRYPOINT ["/usr/sbin/sshd"]
