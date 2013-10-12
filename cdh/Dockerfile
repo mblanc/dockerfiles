@@ -19,4 +19,6 @@ RUN yum install -y openssh-server openssh-clients passwd
 RUN sed 's/UsePAM yes/UsePAM no/' -i /etc/ssh/sshd_config
 RUN /etc/init.d/sshd restart
 
+RUN echo "root:centos"|chpasswd
+
 EXPOSE 7180:7180 8888:8888
