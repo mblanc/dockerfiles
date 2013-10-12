@@ -40,6 +40,5 @@ RUN yum install -y cloudera-manager-server-db
 
 EXPOSE 7180:7180,8888:8888
 
-
-ENTRYPOINT ["/usr/sbin/sshd"]
 CMD ["-D"]
+ENTRYPOINT ["/usr/sbin/sshd"]
