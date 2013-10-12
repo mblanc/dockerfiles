@@ -24,14 +24,13 @@ RUN yum -y install hadoop-yarn
 RUN yum -y install hadoop-client
 RUN yum -y install hadoop-0.20-mapreduce
 RUN yum -y install hue-plugins
+RUN yum -y install hbase
 RUN yum -y install hive
 RUN yum -y install oozie
 RUN yum -y install oozie-client
 RUN yum -y install pig
+RUN yum -y install zookeeper
 RUN yum -y install hue
-
-# RUN yum -y install hbase
-# RUN yum -y install zookeeper
 
 # Cloudera Manager
 RUN yum -y install cloudera-manager-daemons cloudera-manager-server cloudera-manager-agent
@@ -40,6 +39,7 @@ RUN yum -y install cloudera-manager-daemons cloudera-manager-server cloudera-man
 RUN yum install -y cloudera-manager-server-db
 
 EXPOSE 7180:7180,8888:8888
+
 
 ENTRYPOINT ["/usr/sbin/sshd"]
 CMD ["-D"]
