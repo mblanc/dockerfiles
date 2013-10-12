@@ -39,6 +39,3 @@ RUN yum -y install cloudera-manager-daemons cloudera-manager-server cloudera-man
 RUN yum install -y cloudera-manager-server-db
 
 EXPOSE 7180:7180 8888:8888
-
-CMD ["-D"]
-ENTRYPOINT ["/usr/sbin/sshd"]
