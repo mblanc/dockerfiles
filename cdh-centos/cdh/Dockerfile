@@ -1,4 +1,4 @@
-FROM mblanc/sshd
+FROM mblanc/centos-sshd
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
 # Yum repos

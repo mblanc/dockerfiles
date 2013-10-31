@@ -1,4 +1,4 @@
-FROM mblanc/cdh
+FROM mblanc/centos-cdh
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
 #Hue
