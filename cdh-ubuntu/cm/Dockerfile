@@ -2,7 +2,7 @@ FROM mblanc/ubuntu-cdh
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
 #Hue
-apt-get install hue
+apt-get -y --force-yes install hue
 
 # Cloudera Manager
 RUN apt-get -y --force-yes install cloudera-manager-server cloudera-manager-server-db
