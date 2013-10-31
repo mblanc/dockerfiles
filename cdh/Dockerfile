@@ -15,5 +15,7 @@ RUN yum -y install bigtop-utils bigtop-jsvc bigtop-tomcat hadoop hadoop-hdfs had
 # Cloudera Manager
 RUN yum -y install cloudera-manager-daemons cloudera-manager-agent
 
+# TODO modify /etc/cloudera-scm-agent/config.ini here
+
 CMD ["-D"] 
 ENTRYPOINT ["/usr/sbin/sshd"]
