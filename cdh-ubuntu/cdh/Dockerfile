@@ -9,7 +9,9 @@ RUN wget -O /etc/apt/sources.list.d/cdh4.list http://archive.cloudera.com/cdh4/u
 RUN apt-get update -y 
 
 # CDH
-RUN apt-get install -y --force-yes bigtop-utils bigtop-jsvc bigtop-tomcat hadoop hadoop-hdfs hadoop-httpfs hadoop-mapreduce hadoop-yarn hadoop-client hadoop-0.20-mapreduce hue-plugins hbase hive oozie oozie-client pig zookeeper
+RUN apt-get install -y --force-yes bigtop-utils bigtop-jsvc bigtop-tomcat 
+RUN apt-get install -y --force-yes hadoop hadoop-hdfs hadoop-httpfs hadoop-mapreduce hadoop-yarn hadoop-client hadoop-0.20-mapreduce 
+RUN apt-get install -y --force-yes hue-plugins hbase hive oozie oozie-client pig zookeeper
 
 RUN service hadoop-httpfs stop
 
