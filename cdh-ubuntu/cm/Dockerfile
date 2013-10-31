@@ -5,7 +5,7 @@ MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 apt-get install hue
 
 # Cloudera Manager
-RUN apt-get -y install cloudera-manager-server cloudera-manager-server-db
+RUN apt-get -y --force-yes install cloudera-manager-server cloudera-manager-server-db
 
 EXPOSE 7180:7180 8888:8888
 
