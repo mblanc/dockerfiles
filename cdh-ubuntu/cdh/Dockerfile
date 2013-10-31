@@ -4,7 +4,8 @@ MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 # Yum repos
 RUN wget -O /etc/apt/sources.list.d/cm4.list http://archive.cloudera.com/cm4/ubuntu/precise/amd64/cm/cloudera.list 
 RUN wget -O /etc/apt/sources.list.d/cdh4.list http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh/cloudera.list
-RUN wget http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh/archive.key | apt-key add -
+RUN wget http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh/archive.key
+RUN apt-key add archive.key
 
 # Upgrade
 RUN apt-get update -y 
