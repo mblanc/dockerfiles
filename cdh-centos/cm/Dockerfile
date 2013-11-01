@@ -8,8 +8,8 @@ RUN yum -y install hue
 RUN yum -y install cloudera-manager-server cloudera-manager-server-db
 
 # Launch Cloudera manager server
-RUN service start cloudera-scm-server-db
-RUN service start cloudera-scm-server
+RUN service cloudera-scm-server-db start
+RUN service cloudera-scm-server start
 
 EXPOSE 7180:7180 8888:8888
 

@@ -22,7 +22,7 @@ RUN yum -y install cloudera-manager-daemons cloudera-manager-agent
 RUN sed -i 's/server_host=localhost$/server_host=192.168.0.2/' /etc/cloudera-scm-agent/config.ini
 
 # Launch Cloudera manager agent
-RUN service start cloudera-scm-agent
+RUN service cloudera-scm-agent start
 
 CMD ["-D"] 
 ENTRYPOINT ["/usr/sbin/sshd"]
