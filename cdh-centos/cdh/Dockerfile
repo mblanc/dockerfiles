@@ -10,6 +10,7 @@ RUN wget -P /etc/yum.repos.d/ http://archive.cloudera.com/impala/redhat/6/x86_64
 RUN yum upgrade -y
 
 # CDH
+RUN yum -y install java-1.7.0-openjdk
 RUN yum -y install bigtop-utils bigtop-jsvc bigtop-tomcat 
 RUN yum -y install hadoop hadoop-hdfs hadoop-httpfs hadoop-mapreduce hadoop-yarn hadoop-client hadoop-0.20-mapreduce 
 RUN yum -y install hue-plugins hbase hive oozie oozie-client pig zookeeper
@@ -17,7 +18,11 @@ RUN yum -y install hue-plugins hbase hive oozie oozie-client pig zookeeper
 # Cloudera Manager
 RUN yum -y install cloudera-manager-daemons cloudera-manager-agent
 
-# TODO modify /etc/cloudera-scm-agent/config.ini here
+# modify /etc/cloudera-scm-agent/config.ini
+RUN sed -i 's/server_host=localhost$/server_host=192.168.0.2/' /etc/cloudera-scm-agent/config.ini
+
+# Launch Cloudera manager agent
+RUN service start cloudera-scm-agent
 
 CMD ["-D"] 
 ENTRYPOINT ["/usr/sbin/sshd"]
