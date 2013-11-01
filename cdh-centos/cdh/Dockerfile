@@ -24,6 +24,9 @@ RUN yum -y install hue
 # Cloudera Manager
 RUN yum -y install cloudera-manager-daemons cloudera-manager-agent cloudera-manager-server cloudera-manager-server-db
 
+
+RUN /etc/init.d/sshd restart
+
 # modify /etc/cloudera-scm-agent/config.ini
 RUN sed -i 's/server_host=localhost$/server_host=192.168.0.2/' /etc/cloudera-scm-agent/config.ini
 
