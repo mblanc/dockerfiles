@@ -1,6 +1,6 @@
 #!/bin/sh
 
-NAMENODE=$(sudo docker run -privileged -d mblanc/centos-cm)
+NAMENODE=$(sudo docker run -privileged -d mblanc/centos-cdh)
 echo $NAMENODE
 sleep 5
 NAMENODE_IP=$(sudo docker inspect $NAMENODE | grep IPAddress | cut -d '"' -f 4)
