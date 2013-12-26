@@ -1,10 +1,10 @@
 FROM mblanc/sshd
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
-# Yum repos
+# Apt-get repos
 RUN wget -O /etc/apt/sources.list.d/cm5.list http://archive.cloudera.com/cm5/ubuntu/precise/amd64/cm/cloudera.list 
 RUN wget -O /etc/apt/sources.list.d/cdh5.list http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh/cloudera.list
-RUN wget http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh/archive.key
+RUN wget http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh/archive.key
 RUN apt-key add archive.key
 
 # Upgrade
@@ -33,6 +33,13 @@ RUN apt-get install -y bigtop-jsvc bigtop-utils bigtop-tomcat hue-common sqoop2-
 
 # Cloudera Manager
 RUN apt-get -y install cloudera-manager-daemons cloudera-manager-agent
+
+# Locale
+RUN locale-gen en_US en_US.UTF-8
+RUN dpkg-reconfigure locales
+
+# tmp
+RUN chmod 777 /tmp
 
 # TODO modify /etc/cloudera-scm-agent/config.ini here
 #RUN sed -i 's/127\.0\.0\.1/192\.168\.1\.1/' /etc/cloudera-scm-agent/config.ini
