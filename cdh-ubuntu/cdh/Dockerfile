@@ -10,7 +10,17 @@ RUN apt-key add archive.key
 # Upgrade
 RUN apt-get update -y
 
+# Fake a fuse install (or openjdk-7-jdk will not install)
+RUN apt-get install libfuse2
+RUN cd /tmp ; apt-get download fuse
+RUN cd /tmp ; dpkg-deb -x fuse_* .
+RUN cd /tmp ; dpkg-deb -e fuse_*
+RUN cd /tmp ; rm fuse_*.deb
+RUN cd /tmp ; echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
+RUN cd /tmp ; dpkg-deb -b . /fuse.deb
+RUN cd /tmp ; dpkg -i /fuse.deb
 
+# JDK 7
 RUN apt-get install -y openjdk-7-jdk
 
 # CDH 4
