@@ -1,30 +1,21 @@
 #!/bin/sh
 
-NAMENODE=$(sudo docker run -privileged -d mblanc/ubuntu-cm)
+NAMENODE=$(sudo docker run -d -t -P -name namenode -h namenode.cluster.com mblanc/cm)
 echo $NAMENODE
-sleep 5
-NAMENODE_IP=$(sudo docker inspect $NAMENODE | grep IPAddress | cut -d '"' -f 4)
-echo ip $NAMENODE_IP
+sleep 3
 pipework br1 $NAMENODE 192.168.1.1/24
 
-
-DATANODE1=$(sudo docker run -privileged -d mblanc/ubuntu-cdh)
+DATANODE1=$(sudo docker run -d -t -link namenode:namenode -h datanode1.cluster.com -mblanc/cdh)
 echo $DATANODE1
-sleep 5
-DATANODE1_IP=$(sudo docker inspect $DATANODE1 | grep IPAddress | cut -d '"' -f 4)
-echo ip $DATANODE1_IP
+sleep 3
 pipework br1 $DATANODE1 192.168.1.2/24
 
-DATANODE2=$(sudo docker run -privileged -d mblanc/ubuntu-cdh)
+DATANODE2=$(sudo docker run -d -t -link namenode:namenode -h datanode2.cluster.com -mblanc/cdh)
 echo $DATANODE2
-sleep 5
-DATANODE2_IP=$(sudo docker inspect $DATANODE2 | grep IPAddress | cut -d '"' -f 4)
-echo ip $DATANODE2_IP
+sleep 3
 pipework br1 $DATANODE2 192.168.1.3/24
 
-DATANODE3=$(sudo docker run -privileged -d mblanc/ubuntu-cdh)
+DATANODE3=$(sudo docker run -d -t -link namenode:namenode -h datanode3.cluster.com -mblanc/cdh)
 echo $DATANODE3
-sleep 5
-DATANODE3_IP=$(sudo docker inspect $DATANODE3 | grep IPAddress | cut -d '"' -f 4)
-echo ip $DATANODE3_IP
-pipework br1 $DATANODE2 192.168.1.4/24
+sleep 3
+pipework br1 $DATANODE3 192.168.1.4/24

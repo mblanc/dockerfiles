@@ -34,7 +34,7 @@ RUN dpkg-reconfigure locales
 RUN chmod 777 /tmp
 
 # TODO modify /etc/cloudera-scm-agent/config.ini here
-#RUN sed -i 's/127\.0\.0\.1/192\.168\.1\.1/' /etc/cloudera-scm-agent/config.ini
+RUN sed -i 's/server_host=localhost/server_host=192\.168\.1\.1/' /etc/cloudera-scm-agent/config.ini
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 CMD ["/usr/bin/supervisord"]
