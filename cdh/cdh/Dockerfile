@@ -1,14 +1,6 @@
-FROM mblanc/sshd
+FROM mblanc/cloudera
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
-# Apt-get repos
-RUN wget -O /etc/apt/sources.list.d/cm5.list http://archive.cloudera.com/cm5/ubuntu/precise/amd64/cm/cloudera.list 
-RUN wget -O /etc/apt/sources.list.d/cdh5.list http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh/cloudera.list
-RUN wget http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh/archive.key
-RUN apt-key add archive.key
-
-# Upgrade
-RUN apt-get update -y
 
 # Fake a fuse install (or openjdk-7-jdk will not install)
 RUN apt-get install libfuse2
