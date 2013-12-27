@@ -1,8 +1,8 @@
 FROM mblanc/cdh
 MAINTAINER Matthieu Blanc blanc.matthieu@gmail.com
 
-#Hue
-#apt-get -y install hue
+# CDH5
+RUN apt-get -y install hadoop-yarn-resourcemanager hadoop-hdfs-namenode hadoop-hdfs-secondarynamenode hadoop-mapreduce-historyserver hadoop-yarn-proxyserver hue
 
 # Cloudera Manager
 RUN apt-get -y install cloudera-manager-server cloudera-manager-server-db

@@ -15,13 +15,9 @@ RUN cd /tmp ; dpkg -i /fuse.deb
 # JDK 7
 RUN apt-get install -y openjdk-7-jdk
 
-# CDH 4
-#RUN apt-get install -y bigtop-utils bigtop-jsvc bigtop-tomcat 
-#RUN apt-get install -y hadoop hadoop-hdfs hadoop-httpfs hadoop-mapreduce hadoop-yarn hadoop-client hadoop-0.20-mapreduce 
-#RUN apt-get install -y hue-plugins hbase hive oozie oozie-client pig zookeeper
-
 # CDH 5
 RUN apt-get install -y bigtop-jsvc bigtop-utils bigtop-tomcat hue-common sqoop2-client impala-shell
+RUN apt-get install -y hadoop-yarn-nodemanager hadoop-hdfs-datanode hadoop-mapreduce hadoop-client hive hive-metastore hive-server2 oozie oozie-client pig zookeeper
 
 # Cloudera Manager
 RUN apt-get -y install cloudera-manager-daemons cloudera-manager-agent
